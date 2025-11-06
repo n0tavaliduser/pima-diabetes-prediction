@@ -15,16 +15,18 @@ def load_data(file_path):
     """
     return pd.read_csv(file_path)
 
-def preprocess_data(df):
+def preprocess_data(df, test_size, random_state):
     """
     Melakukan pra-pemrosesan data. Ini termasuk menangani nilai nol yang tidak masuk akal
     dan memisahkan fitur dan target.
 
     Parameters:
     df (pandas.DataFrame): DataFrame input.
+    test_size (float): Proporsi dataset untuk disertakan dalam pemisahan pengujian.
+    random_state (int): Mengontrol pengacakan yang diterapkan pada data.
 
     Returns:
-    tuple: Tuple yang berisi X_train, X_test, y_train, y_test, dan scaler.
+    tuple: Tuple yang berisi X_train, X_test, y_train, y_test.
     """
     # Ganti nilai 0 dengan NaN pada kolom-kolom tertentu di mana 0 tidak masuk akal
     columns_to_replace = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
@@ -39,7 +41,7 @@ def preprocess_data(df):
     y = df['Outcome']
 
     # Pisahkan data menjadi set pelatihan dan pengujian
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=y)
 
     # Penskalaan fitur
     scaler = StandardScaler()

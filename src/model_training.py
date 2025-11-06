@@ -6,20 +6,21 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-def train_and_evaluate_models(X_train, X_test, y_train, y_test):
+def train_and_evaluate_models(X_train, X_test, y_train, y_test, model_params):
     """
     Melatih dan mengevaluasi model KNN, Decision Tree, dan Naive Bayes.
 
     Parameters:
     X_train, X_test, y_train, y_test: Data pelatihan dan pengujian.
+    model_params (dict): Kamus yang berisi parameter untuk setiap model.
 
     Returns:
     dict: Kamus yang berisi metrik evaluasi untuk setiap model.
     """
     models = {
-        "K-Nearest Neighbors": KNeighborsClassifier(),
-        "Decision Tree": DecisionTreeClassifier(random_state=42),
-        "Naive Bayes": GaussianNB()
+        "K-Nearest Neighbors": KNeighborsClassifier(**model_params.get("K-Nearest Neighbors", {})),
+        "Decision Tree": DecisionTreeClassifier(**model_params.get("Decision Tree", {})),
+        "Naive Bayes": GaussianNB(**model_params.get("Naive Bayes", {}))
     }
 
     results = {}
