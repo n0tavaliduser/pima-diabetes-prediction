@@ -2,6 +2,7 @@ from src.data_preprocessing import load_data, preprocess_data
 from src.model_training import train_and_evaluate_models
 import os
 import yaml
+import json
 
 def main():
     """
@@ -39,6 +40,22 @@ def main():
         print("Confusion Matrix:")
         print(metrics['confusion_matrix'])
         print("\n")
+
+    # Simpan hasil numerik ke file JSON
+    json_results = {}
+    for name, metrics in results.items():
+        json_results[name] = {
+            "accuracy": metrics["accuracy"],
+            "precision": metrics["precision"],
+            "recall": metrics["recall"],
+            "f1_score": metrics["f1_score"],
+            "confusion_matrix": metrics["confusion_matrix"].tolist()
+        }
+
+    with open('output/evaluation_metrics.json', 'w') as f:
+        json.dump(json_results, f, indent=4)
+    
+    print("Hasil evaluasi numerik disimpan di output/evaluation_metrics.json")
 
 if __name__ == "__main__":
     main()
