@@ -1,4 +1,4 @@
-from src.data_preprocessing import load_data
+from src.data_preprocessing import load_and_preprocess_data
 from src.model_training import run_experiments
 import os
 import yaml
@@ -17,14 +17,12 @@ def main():
     if not os.path.exists('output'):
         os.makedirs('output')
 
-    # Muat data
+    # Muat dan proses data
     file_path = 'dataset/diabetes.csv'
-    data = load_data(file_path)
-    X = data.drop('Outcome', axis=1)
-    y = data['Outcome']
+    X_scaled, y = load_and_preprocess_data(file_path)
 
     # Jalankan eksperimen
-    results = run_experiments(X, y, config['experiments'])
+    results = run_experiments(X_scaled, y, config['experiments'])
 
     # Simpan hasil ke file JSON
     with open('output/experiment_results.json', 'w') as f:
