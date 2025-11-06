@@ -50,7 +50,7 @@ Hasil evaluasi dari ketiga model disimpan di `output/evaluation_metrics.json`. B
 | Decision Tree         | 0.675   | 0.545   | 0.444  | 0.490    |
 | Naive Bayes           | 0.740   | 0.621   | 0.667  | 0.643    |
 
-> **Catatan**: Hasil performa untuk K-Nearest Neighbors (KNN) di atas diperoleh dengan menggunakan nilai `K=5`. Pengujian awal dengan `K=10` (seperti yang dikonfigurasi secara default di `config/setting.yml`) menghasilkan akurasi yang sedikit lebih rendah (0.740). Nilai `K=5` terbukti memberikan keseimbangan yang lebih baik antara bias dan varians untuk dataset ini.
+> **Catatan**: Hasil performa di atas diperoleh dengan pembagian data 90% untuk pelatihan dan 10% untuk pengujian. Perubahan ini secara signifikan meningkatkan akurasi, terutama pada model KNN, yang menunjukkan bahwa model mendapat manfaat besar dari jumlah data pelatihan yang lebih banyak. Nilai `K=5` untuk KNN tetap digunakan karena memberikan keseimbangan terbaik.
 
 ### Analisis Hasil
 
