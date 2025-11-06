@@ -54,10 +54,10 @@ Hasil evaluasi dari ketiga model disimpan di `output/evaluation_metrics.json`. B
 
 ### Analisis Hasil
 
--   **K-Nearest Neighbors (KNN)**: Dengan `K=5`, model ini mencapai **akurasi dan F1-score tertinggi** (75.3% dan 63.5%) di antara ketiga model. Ini menunjukkan bahwa KNN adalah model yang paling seimbang dalam hal presisi dan recall, menjadikannya pilihan yang sangat baik secara keseluruhan.
+-   **K-Nearest Neighbors (KNN)**: Dengan `K=5` dan pembagian data 90/10, model ini mencapai **akurasi tertinggi** (80.5%) dan **F1-score tertinggi** (69.4%). Peningkatan signifikan ini menunjukkan bahwa KNN sangat diuntungkan dari jumlah data pelatihan yang lebih besar, memungkinkannya untuk menangkap pola yang lebih baik.
 
--   **Decision Tree**: Model ini secara konsisten menunjukkan performa terendah di semua metrik utama, menunjukkan bahwa struktur pohon keputusan tunggal mungkin tidak cukup kompleks untuk menangkap pola dalam dataset ini tanpa overfitting.
+-   **Decision Tree**: Model ini masih menunjukkan performa terendah di antara ketiganya. Ini mengindikasikan bahwa bahkan dengan lebih banyak data pelatihan, struktur pohon keputusan tunggal mungkin masih kesulitan untuk menggeneralisasi pola kompleks dari dataset ini secara efektif.
 
--   **Naive Bayes**: Model ini unggul dalam **recall tertinggi** (63.0%), yang berarti paling andal dalam mengidentifikasi semua kasus diabetes positif. Namun, presisinya lebih rendah, yang berarti ada lebih banyak prediksi false positive dibandingkan KNN.
+-   **Naive Bayes**: Model ini menunjukkan **recall tertinggi** (66.7%), menjadikannya yang terbaik dalam mengidentifikasi semua kasus diabetes positif. Peningkatan akurasi juga terlihat, meskipun tidak sebesar KNN. Ini menegaskan kekuatan Naive Bayes dalam skenario di mana meminimalkan *false negatives* adalah prioritas utama.
 
-Secara keseluruhan, **K-Nearest Neighbors (dengan K=5)** adalah model dengan performa terbaik secara umum, menawarkan akurasi dan F1-score tertinggi. Namun, jika prioritas utamanya adalah untuk meminimalkan *false negatives* (tidak mendeteksi diabetes padahal sebenarnya ada), maka **Naive Bayes** bisa menjadi pilihan yang lebih baik karena recall-nya yang superior.
+Secara keseluruhan, **K-Nearest Neighbors (dengan K=5)** tetap menjadi model dengan performa terbaik secara umum, terutama ketika diberi lebih banyak data untuk pelatihan. Namun, jika tujuannya adalah untuk memaksimalkan deteksi kasus positif, **Naive Bayes** tetap menjadi pilihan yang sangat kuat karena keunggulannya dalam metrik recall.
