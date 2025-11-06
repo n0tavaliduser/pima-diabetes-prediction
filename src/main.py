@@ -1,5 +1,5 @@
 from src.data_preprocessing import load_data, preprocess_data
-from src.model_training import train_and_evaluate_models
+from src.model_training import train_and_evaluate_models, find_optimal_k
 import os
 import yaml
 import json
@@ -24,6 +24,15 @@ def main():
         test_size=config['data']['test_size'],
         random_state=config['data']['random_state']
     )
+
+    # Temukan nilai k yang optimal untuk k-NN
+    print("--- Mencari Nilai K Optimal untuk k-NN ---")
+    optimal_k = find_optimal_k(
+        X_train, y_train, X_test, y_test,
+        output_path='output/knn_optimal_k_search.png'
+    )
+    config['models']['K-Nearest Neighbors']['n_neighbors'] = optimal_k
+    print("\n")
 
     # Latih dan evaluasi model
     results = train_and_evaluate_models(
