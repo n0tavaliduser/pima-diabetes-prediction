@@ -46,9 +46,9 @@ Hasil evaluasi dari ketiga model disimpan di `output/evaluation_metrics.json`. B
 
 | Model                 | Akurasi | Presisi | Recall | F1-score |
 | --------------------- | ------- | ------- | ------ | -------- |
-| K-Nearest Neighbors   | 0.753   | 0.660   | 0.611  | 0.635    |
-| Decision Tree         | 0.682   | 0.553   | 0.481  | 0.515    |
-| Naive Bayes           | 0.701   | 0.567   | 0.630  | 0.596    |
+| K-Nearest Neighbors   | 0.805   | 0.773   | 0.630  | 0.694    |
+| Decision Tree         | 0.675   | 0.545   | 0.444  | 0.490    |
+| Naive Bayes           | 0.740   | 0.621   | 0.667  | 0.643    |
 
 > **Catatan**: Hasil performa untuk K-Nearest Neighbors (KNN) di atas diperoleh dengan menggunakan nilai `K=5`. Pengujian awal dengan `K=10` (seperti yang dikonfigurasi secara default di `config/setting.yml`) menghasilkan akurasi yang sedikit lebih rendah (0.740). Nilai `K=5` terbukti memberikan keseimbangan yang lebih baik antara bias dan varians untuk dataset ini.
 
