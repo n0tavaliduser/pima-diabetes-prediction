@@ -4,7 +4,7 @@ data:
 
 models:
   K-Nearest Neighbors:
-    n_neighbors: 10
+    n_neighbors: 5
   Decision Tree:
     random_state: 42
   Naive Bayes: {}

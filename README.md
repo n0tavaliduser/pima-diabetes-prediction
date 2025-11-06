@@ -46,16 +46,18 @@ Hasil evaluasi dari ketiga model disimpan di `output/evaluation_metrics.json`. B
 
 | Model                 | Akurasi | Presisi | Recall | F1-score |
 | --------------------- | ------- | ------- | ------ | -------- |
-| K-Nearest Neighbors   | 0.740   | 0.659   | 0.537  | 0.592    |
+| K-Nearest Neighbors   | 0.753   | 0.660   | 0.611  | 0.635    |
 | Decision Tree         | 0.682   | 0.553   | 0.481  | 0.515    |
 | Naive Bayes           | 0.701   | 0.567   | 0.630  | 0.596    |
 
+> **Catatan**: Hasil performa untuk K-Nearest Neighbors (KNN) di atas diperoleh dengan menggunakan nilai `K=5`. Pengujian awal dengan `K=10` (seperti yang dikonfigurasi secara default di `config/setting.yml`) menghasilkan akurasi yang sedikit lebih rendah (0.740). Nilai `K=5` terbukti memberikan keseimbangan yang lebih baik antara bias dan varians untuk dataset ini.
+
 ### Analisis Hasil
 
--   **K-Nearest Neighbors (KNN)**: Model ini mencapai akurasi tertinggi (74.0%) di antara ketiganya. Presisinya juga cukup baik (65.9%), yang berarti dari semua prediksi positif yang dibuat, 65.9% di antaranya benar. Namun, recall-nya (53.7%) lebih rendah, yang menunjukkan bahwa model ini melewatkan sejumlah kasus diabetes positif.
+-   **K-Nearest Neighbors (KNN)**: Dengan `K=5`, model ini mencapai **akurasi dan F1-score tertinggi** (75.3% dan 63.5%) di antara ketiga model. Ini menunjukkan bahwa KNN adalah model yang paling seimbang dalam hal presisi dan recall, menjadikannya pilihan yang sangat baik secara keseluruhan.
 
--   **Decision Tree**: Model ini memiliki performa terendah di antara ketiganya di hampir semua metrik. Akurasinya adalah 68.2%, dan F1-score-nya adalah 51.5%. Ini menunjukkan bahwa model Decision Tree mungkin kurang cocok untuk dataset ini dibandingkan dengan model lainnya.
+-   **Decision Tree**: Model ini secara konsisten menunjukkan performa terendah di semua metrik utama, menunjukkan bahwa struktur pohon keputusan tunggal mungkin tidak cukup kompleks untuk menangkap pola dalam dataset ini tanpa overfitting.
 
--   **Naive Bayes**: Model ini memiliki F1-score tertinggi (59.6%) dan recall tertinggi (63.0%), yang berarti model ini paling baik dalam mengidentifikasi kasus diabetes positif. Meskipun akurasinya sedikit lebih rendah dari KNN, kemampuannya untuk meminimalkan false negatives (kasus yang salah diprediksi sebagai non-diabetes) menjadikannya model yang kuat untuk kasus penggunaan ini.
+-   **Naive Bayes**: Model ini unggul dalam **recall tertinggi** (63.0%), yang berarti paling andal dalam mengidentifikasi semua kasus diabetes positif. Namun, presisinya lebih rendah, yang berarti ada lebih banyak prediksi false positive dibandingkan KNN.
 
-Secara keseluruhan, **K-Nearest Neighbors** memberikan akurasi tertinggi, tetapi **Naive Bayes** lebih unggul dalam hal F1-score dan recall, yang mungkin lebih penting dalam konteks medis di mana melewatkan kasus positif (false negative) lebih berisiko daripada salah mengidentifikasi kasus negatif (false positive).
+Secara keseluruhan, **K-Nearest Neighbors (dengan K=5)** adalah model dengan performa terbaik secara umum, menawarkan akurasi dan F1-score tertinggi. Namun, jika prioritas utamanya adalah untuk meminimalkan *false negatives* (tidak mendeteksi diabetes padahal sebenarnya ada), maka **Naive Bayes** bisa menjadi pilihan yang lebih baik karena recall-nya yang superior.
