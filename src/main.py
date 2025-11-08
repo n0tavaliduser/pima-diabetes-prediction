@@ -4,13 +4,24 @@ import os
 import yaml
 import json
 import pandas as pd
+import argparse
 
 def main():
     """
     Fungsi utama untuk menjalankan alur kerja prediksi diabetes.
     """
+    # Tambahkan argument parser untuk konfigurasi
+    parser = argparse.ArgumentParser(description="Jalankan alur kerja prediksi diabetes.")
+    parser.add_argument(
+        '--config',
+        type=str,
+        default='config/setting.yml',
+        help='Path ke file konfigurasi YAML.'
+    )
+    args = parser.parse_args()
+
     # Muat konfigurasi
-    with open('config/setting.yml', 'r') as file:
+    with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
 
     # Membuat direktori output jika belum ada
